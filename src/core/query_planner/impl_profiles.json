@@ -1,0 +1,1343 @@
+{
+ "description": "Profiles of the registered physical implementations, measured by scripts/microbenchmark_impls.py; default_impl_registry.py loads them.",
+ "units": {
+  "base_cost": "wall-clock seconds per 1,000 input rows",
+  "base_confidence": "accuracy on clean labeled inputs (relational: share of queries whose output equals the pandas reference)",
+  "gpu_memory_mb": "accelerator memory: on-device encoder parameters + allocator growth",
+  "cpu_cores": "process CPU time / wall time",
+  "memory_mb": "peak Python/numpy allocations (tracemalloc)"
+ },
+ "provenance": {
+  "measured_at": "2026-11-16T11:45:24+00:00",
+  "git_commit": "17702cb85acae57f28f0b5fd004eae1f87faef53",
+  "machine": {
+   "platform": "macOS-15.4.1-arm64-arm-64bit",
+   "processor": "arm",
+   "python": "3.12.11",
+   "cpu_count": 10,
+   "accelerator": "mps"
+  },
+  "llm": {
+   "provider": "dashscope",
+   "text": "deepseek-v4.1-flash-1017",
+   "vision": "qwen3-vl-plus",
+   "temperature": 0.0
+  },
+  "encoders": {
+   "text": "all-MiniLM-L6-v2",
+   "clip": "clip-ViT-B-32",
+   "load_seconds": {
+    "all-MiniLM-L6-v2": 3.977,
+    "clip-ViT-B-32": 0.679
+   }
+  },
+  "data": {
+   "movie": "data/sembench/files/movie/data/sf_2000",
+   "ecomm": "data/sembench/files/ecomm/data/sf_500",
+   "metadata_graph": "runs/metadata_graphs/sembench_movie_sf_2000.pkl"
+  },
+  "seed": 0,
+  "repeats": 5,
+  "samples": {
+   "sentiment": 200,
+   "semantic_filter": 200,
+   "llm_match_reviews": 60,
+   "similarity_join_probes": 40,
+   "images": 100
+  },
+  "external_sort_run_rows": 256,
+  "index_build_seconds": {
+   "Reviews.scoreSentiment": 0.001585,
+   "Reviews.reviewState+isTopCritic": 0.003084,
+   "Reviews.criticName": 0.002058,
+   "Movies.originalLanguage": 9.6e-05,
+   "Movies.rating": 9.6e-05
+  }
+ },
+ "profiles": {
+  "SCAN": [
+   {
+    "impl_type": "TABLE_SCAN",
+    "base_cost": 2e-06,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.92,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "scan_q0",
+      "family": "scan_q0",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 4e-06,
+      "runs": 5,
+      "cpu_cores": 1.07846,
+      "accel_mb": 0.0,
+      "peak_mb": 0.015388,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q1",
+      "family": "scan_q1",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 2e-06,
+      "runs": 5,
+      "cpu_cores": 1.654934,
+      "accel_mb": 0.0,
+      "peak_mb": 0.015388,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q2",
+      "family": "scan_q2",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 3e-06,
+      "runs": 5,
+      "cpu_cores": 1.548608,
+      "accel_mb": 0.0,
+      "peak_mb": 0.015388,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q3",
+      "family": "scan_q3",
+      "input_rows": 116,
+      "output_rows": 116,
+      "seconds": 0.0,
+      "runs": 5,
+      "cpu_cores": 0.0,
+      "accel_mb": 0.0,
+      "peak_mb": 0.00106,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q4",
+      "family": "scan_q4",
+      "input_rows": 116,
+      "output_rows": 116,
+      "seconds": 0.0,
+      "runs": 5,
+      "cpu_cores": 5.332879,
+      "accel_mb": 0.0,
+      "peak_mb": 0.00106,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "INDEX_SCAN",
+    "base_cost": 4.4e-05,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.07,
+    "memory_mb": 0.2,
+    "tasks": [
+     {
+      "task": "scan_q0",
+      "family": "scan_q0",
+      "input_rows": 2000,
+      "output_rows": 1487,
+      "seconds": 7.3e-05,
+      "runs": 5,
+      "cpu_cores": 1.001152,
+      "accel_mb": 0.0,
+      "peak_mb": 0.156749,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q1",
+      "family": "scan_q1",
+      "input_rows": 2000,
+      "output_rows": 129,
+      "seconds": 4.8e-05,
+      "runs": 5,
+      "cpu_cores": 1.021706,
+      "accel_mb": 0.0,
+      "peak_mb": 0.07299,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q2",
+      "family": "scan_q2",
+      "input_rows": 2000,
+      "output_rows": 7,
+      "seconds": 4e-06,
+      "runs": 5,
+      "cpu_cores": 1.153677,
+      "accel_mb": 0.0,
+      "peak_mb": 0.001328,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q3",
+      "family": "scan_q3",
+      "input_rows": 116,
+      "output_rows": 110,
+      "seconds": 1e-05,
+      "runs": 5,
+      "cpu_cores": 1.05597,
+      "accel_mb": 0.0,
+      "peak_mb": 0.010263,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     },
+     {
+      "task": "scan_q4",
+      "family": "scan_q4",
+      "input_rows": 116,
+      "output_rows": 108,
+      "seconds": 8e-06,
+      "runs": 5,
+      "cpu_cores": 1.113447,
+      "accel_mb": 0.0,
+      "peak_mb": 0.010325,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:50+00:00"
+     }
+    ]
+   }
+  ],
+  "FILTER": [
+   {
+    "impl_type": "PREDICATE_FILTER",
+    "base_cost": 96.592772,
+    "base_confidence": 0.9472,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 0.86,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "filter_q0",
+      "family": "structured",
+      "input_rows": 2000,
+      "output_rows": 1487,
+      "seconds": 0.001281,
+      "runs": 5,
+      "cpu_cores": 1.000098,
+      "accel_mb": 0.0,
+      "peak_mb": 0.013359,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "filter_q1",
+      "family": "structured",
+      "input_rows": 2000,
+      "output_rows": 129,
+      "seconds": 0.001642,
+      "runs": 5,
+      "cpu_cores": 0.999822,
+      "accel_mb": 0.0,
+      "peak_mb": 0.002403,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "filter_q2",
+      "family": "structured",
+      "input_rows": 2000,
+      "output_rows": 7,
+      "seconds": 0.002168,
+      "runs": 5,
+      "cpu_cores": 1.000039,
+      "accel_mb": 0.0,
+      "peak_mb": 0.002141,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "filter_q3",
+      "family": "structured",
+      "input_rows": 116,
+      "output_rows": 110,
+      "seconds": 7.4e-05,
+      "runs": 5,
+      "cpu_cores": 1.006228,
+      "accel_mb": 0.0,
+      "peak_mb": 0.002098,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "filter_q4",
+      "family": "structured",
+      "input_rows": 116,
+      "output_rows": 108,
+      "seconds": 8.5e-05,
+      "runs": 5,
+      "cpu_cores": 1.002465,
+      "accel_mb": 0.0,
+      "peak_mb": 0.002191,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "filter_q5",
+      "family": "structured",
+      "input_rows": 116,
+      "output_rows": 6,
+      "seconds": 8.2e-05,
+      "runs": 5,
+      "cpu_cores": 0.999501,
+      "accel_mb": 0.0,
+      "peak_mb": 0.001335,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "filter_positive_reviews",
+      "input_rows": 200,
+      "output_rows": 137,
+      "seconds": 38.636955,
+      "runs": 1,
+      "cpu_cores": 0.000737,
+      "accel_mb": 0.0,
+      "peak_mb": 0.075044,
+      "accuracy": 0.894472,
+      "measured_at": "2026-11-16T10:06:03+00:00",
+      "family": "semantic"
+     }
+    ]
+   },
+   {
+    "impl_type": "THRESHOLD_FILTER",
+    "base_cost": 257.469058,
+    "base_confidence": 0.9296,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 0.01,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "filter_positive_reviews",
+      "input_rows": 200,
+      "output_rows": 144,
+      "seconds": 51.493812,
+      "runs": 1,
+      "cpu_cores": 0.000431,
+      "accel_mb": 0.0,
+      "peak_mb": 0.058977,
+      "accuracy": 0.929648,
+      "measured_at": "2026-11-16T10:06:54+00:00",
+      "family": "semantic"
+     }
+    ]
+   }
+  ],
+  "PROJECT": [
+   {
+    "impl_type": "COLUMN_PROJECT",
+    "base_cost": 0.000199,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.4,
+    "tasks": [
+     {
+      "task": "project_q0",
+      "family": "project_q0",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.000353,
+      "runs": 5,
+      "cpu_cores": 1.004598,
+      "accel_mb": 0.0,
+      "peak_mb": 0.366455,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "project_q1",
+      "family": "project_q1",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.000441,
+      "runs": 5,
+      "cpu_cores": 1.000377,
+      "accel_mb": 0.0,
+      "peak_mb": 0.366455,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   }
+  ],
+  "AGGREGATE": [
+   {
+    "impl_type": "HASH_AGGREGATE",
+    "base_cost": 0.000603,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "aggregate_q0",
+      "family": "aggregate_q0",
+      "input_rows": 2000,
+      "output_rows": 105,
+      "seconds": 0.00079,
+      "runs": 5,
+      "cpu_cores": 1.001161,
+      "accel_mb": 0.0,
+      "peak_mb": 0.048391,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q1",
+      "family": "aggregate_q1",
+      "input_rows": 2000,
+      "output_rows": 105,
+      "seconds": 0.001886,
+      "runs": 5,
+      "cpu_cores": 1.000155,
+      "accel_mb": 0.0,
+      "peak_mb": 0.051193,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q2",
+      "family": "aggregate_q2",
+      "input_rows": 116,
+      "output_rows": 5,
+      "seconds": 8.3e-05,
+      "runs": 5,
+      "cpu_cores": 1.003021,
+      "accel_mb": 0.0,
+      "peak_mb": 0.003277,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q3",
+      "family": "aggregate_q3",
+      "input_rows": 116,
+      "output_rows": 5,
+      "seconds": 8.2e-05,
+      "runs": 5,
+      "cpu_cores": 1.008101,
+      "accel_mb": 0.0,
+      "peak_mb": 0.004414,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q4",
+      "family": "aggregate_q4",
+      "input_rows": 2000,
+      "output_rows": 1,
+      "seconds": 0.000506,
+      "runs": 5,
+      "cpu_cores": 1.002141,
+      "accel_mb": 0.0,
+      "peak_mb": 0.016188,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "STREAM_AGGREGATE",
+    "base_cost": 0.001382,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "aggregate_q0",
+      "family": "aggregate_q0",
+      "input_rows": 2000,
+      "output_rows": 105,
+      "seconds": 0.002825,
+      "runs": 5,
+      "cpu_cores": 1.000162,
+      "accel_mb": 0.0,
+      "peak_mb": 0.137739,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q1",
+      "family": "aggregate_q1",
+      "input_rows": 2000,
+      "output_rows": 105,
+      "seconds": 0.004151,
+      "runs": 5,
+      "cpu_cores": 1.00011,
+      "accel_mb": 0.0,
+      "peak_mb": 0.137737,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q2",
+      "family": "aggregate_q2",
+      "input_rows": 116,
+      "output_rows": 5,
+      "seconds": 0.000175,
+      "runs": 5,
+      "cpu_cores": 1.002147,
+      "accel_mb": 0.0,
+      "peak_mb": 0.007465,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q3",
+      "family": "aggregate_q3",
+      "input_rows": 116,
+      "output_rows": 5,
+      "seconds": 0.000162,
+      "runs": 5,
+      "cpu_cores": 1.004103,
+      "accel_mb": 0.0,
+      "peak_mb": 0.007465,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "aggregate_q4",
+      "family": "aggregate_q4",
+      "input_rows": 2000,
+      "output_rows": 1,
+      "seconds": 0.001039,
+      "runs": 5,
+      "cpu_cores": 1.001203,
+      "accel_mb": 0.0,
+      "peak_mb": 0.032446,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   }
+  ],
+  "SORT": [
+   {
+    "impl_type": "MEMORY_SORT",
+    "base_cost": 0.000413,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.02,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "sort_q0",
+      "family": "sort_q0",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.00049,
+      "runs": 5,
+      "cpu_cores": 1.000427,
+      "accel_mb": 0.0,
+      "peak_mb": 0.061607,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "sort_q1",
+      "family": "sort_q1",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.001234,
+      "runs": 5,
+      "cpu_cores": 1.000034,
+      "accel_mb": 0.0,
+      "peak_mb": 0.104866,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "sort_q2",
+      "family": "sort_q2",
+      "input_rows": 116,
+      "output_rows": 116,
+      "seconds": 2.4e-05,
+      "runs": 5,
+      "cpu_cores": 1.06383,
+      "accel_mb": 0.0,
+      "peak_mb": 0.003265,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "sort_q3",
+      "family": "sort_q3",
+      "input_rows": 116,
+      "output_rows": 116,
+      "seconds": 6.8e-05,
+      "runs": 5,
+      "cpu_cores": 1.013469,
+      "accel_mb": 0.0,
+      "peak_mb": 0.003357,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "EXTERNAL_SORT",
+    "base_cost": 0.007614,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 3.5,
+    "tasks": [
+     {
+      "task": "sort_q0",
+      "family": "sort_q0",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.011866,
+      "runs": 5,
+      "cpu_cores": 0.998034,
+      "accel_mb": 0.0,
+      "peak_mb": 3.467536,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "sort_q1",
+      "family": "sort_q1",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.012668,
+      "runs": 5,
+      "cpu_cores": 1.000095,
+      "accel_mb": 0.0,
+      "peak_mb": 3.486184,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "sort_q2",
+      "family": "sort_q2",
+      "input_rows": 116,
+      "output_rows": 116,
+      "seconds": 0.001066,
+      "runs": 5,
+      "cpu_cores": 0.997458,
+      "accel_mb": 0.0,
+      "peak_mb": 0.251913,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "sort_q3",
+      "family": "sort_q3",
+      "input_rows": 116,
+      "output_rows": 116,
+      "seconds": 0.001044,
+      "runs": 5,
+      "cpu_cores": 1.000639,
+      "accel_mb": 0.0,
+      "peak_mb": 0.25124,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   }
+  ],
+  "LIMIT": [
+   {
+    "impl_type": "STREAMING_LIMIT",
+    "base_cost": 0.0,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 2.08,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "limit_q0",
+      "family": "limit_q0",
+      "input_rows": 2000,
+      "output_rows": 1,
+      "seconds": 1e-06,
+      "runs": 5,
+      "cpu_cores": 2.400932,
+      "accel_mb": 0.0,
+      "peak_mb": 8.4e-05,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "limit_q1",
+      "family": "limit_q1",
+      "input_rows": 2000,
+      "output_rows": 10,
+      "seconds": 0.0,
+      "runs": 5,
+      "cpu_cores": 2.183512,
+      "accel_mb": 0.0,
+      "peak_mb": 0.000153,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "limit_q2",
+      "family": "limit_q2",
+      "input_rows": 2000,
+      "output_rows": 500,
+      "seconds": 1e-06,
+      "runs": 5,
+      "cpu_cores": 1.655572,
+      "accel_mb": 0.0,
+      "peak_mb": 0.003891,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   }
+  ],
+  "DISTINCT": [
+   {
+    "impl_type": "HASH_DISTINCT",
+    "base_cost": 0.001866,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "distinct_q0",
+      "family": "distinct_q0",
+      "input_rows": 2000,
+      "output_rows": 1003,
+      "seconds": 0.003578,
+      "runs": 5,
+      "cpu_cores": 0.999069,
+      "accel_mb": 0.0,
+      "peak_mb": 0.110052,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "distinct_q1",
+      "family": "distinct_q1",
+      "input_rows": 2000,
+      "output_rows": 176,
+      "seconds": 0.004022,
+      "runs": 5,
+      "cpu_cores": 1.000073,
+      "accel_mb": 0.0,
+      "peak_mb": 0.027205,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "distinct_q2",
+      "family": "distinct_q2",
+      "input_rows": 116,
+      "output_rows": 62,
+      "seconds": 0.000209,
+      "runs": 5,
+      "cpu_cores": 1.006793,
+      "accel_mb": 0.0,
+      "peak_mb": 0.008591,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "STREAM_DISTINCT",
+    "base_cost": 0.002063,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.2,
+    "tasks": [
+     {
+      "task": "distinct_q0",
+      "family": "distinct_q0",
+      "input_rows": 2000,
+      "output_rows": 1003,
+      "seconds": 0.003971,
+      "runs": 5,
+      "cpu_cores": 1.000262,
+      "accel_mb": 0.0,
+      "peak_mb": 0.184429,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "distinct_q1",
+      "family": "distinct_q1",
+      "input_rows": 2000,
+      "output_rows": 176,
+      "seconds": 0.004463,
+      "runs": 5,
+      "cpu_cores": 1.000084,
+      "accel_mb": 0.0,
+      "peak_mb": 0.23649,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     },
+     {
+      "task": "distinct_q2",
+      "family": "distinct_q2",
+      "input_rows": 116,
+      "output_rows": 62,
+      "seconds": 0.000229,
+      "runs": 5,
+      "cpu_cores": 1.005834,
+      "accel_mb": 0.0,
+      "peak_mb": 0.011424,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   }
+  ],
+  "JOIN": [
+   {
+    "impl_type": "HASH_JOIN",
+    "base_cost": 0.001779,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.5,
+    "tasks": [
+     {
+      "task": "join_movie_reviews",
+      "family": "join_movie_reviews",
+      "input_rows": 2116,
+      "output_rows": 2457,
+      "seconds": 0.003764,
+      "runs": 5,
+      "cpu_cores": 0.999956,
+      "accel_mb": 0.0,
+      "peak_mb": 0.475094,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:51+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "NESTED_LOOP_JOIN",
+    "base_cost": 0.005463,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.5,
+    "tasks": [
+     {
+      "task": "join_movie_reviews",
+      "family": "join_movie_reviews",
+      "input_rows": 2116,
+      "output_rows": 2457,
+      "seconds": 0.01156,
+      "runs": 5,
+      "cpu_cores": 0.99756,
+      "accel_mb": 0.0,
+      "peak_mb": 0.468163,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:52+00:00"
+     }
+    ]
+   }
+  ],
+  "UNION": [
+   {
+    "impl_type": "UNION_ALL",
+    "base_cost": 1.1e-05,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.02,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "union_halves",
+      "family": "union_halves",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 2.3e-05,
+      "runs": 5,
+      "cpu_cores": 1.020317,
+      "accel_mb": 0.0,
+      "peak_mb": 0.015503,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:52+00:00"
+     }
+    ]
+   }
+  ],
+  "SEMANTIC_SEARCH": [
+   {
+    "impl_type": "VECTOR_SEARCH",
+    "base_cost": 0.575528,
+    "base_confidence": 0.4998,
+    "gpu_memory_mb": 88.7,
+    "cpu_cores": 0.35,
+    "memory_mb": 1.0,
+    "tasks": [
+     {
+      "task": "search_Tshirts",
+      "family": "search_Tshirts",
+      "input_rows": 500,
+      "output_rows": 89,
+      "seconds": 0.282826,
+      "runs": 5,
+      "cpu_cores": 0.347182,
+      "accel_mb": 2.015625,
+      "peak_mb": 1.042809,
+      "accuracy": 0.707865,
+      "measured_at": "2026-11-16T11:44:45+00:00"
+     },
+     {
+      "task": "search_Casual_Shoes",
+      "family": "search_Casual_Shoes",
+      "input_rows": 500,
+      "output_rows": 32,
+      "seconds": 0.287803,
+      "runs": 5,
+      "cpu_cores": 0.33836,
+      "accel_mb": 0.0,
+      "peak_mb": 1.00716,
+      "accuracy": 0.46875,
+      "measured_at": "2026-11-16T11:44:47+00:00"
+     },
+     {
+      "task": "search_Shirts",
+      "family": "search_Shirts",
+      "input_rows": 500,
+      "output_rows": 31,
+      "seconds": 0.28711,
+      "runs": 5,
+      "cpu_cores": 0.345547,
+      "accel_mb": 0.015625,
+      "peak_mb": 1.003386,
+      "accuracy": 0.096774,
+      "measured_at": "2026-11-16T11:44:48+00:00"
+     },
+     {
+      "task": "search_Sports_Shoes",
+      "family": "search_Sports_Shoes",
+      "input_rows": 500,
+      "output_rows": 27,
+      "seconds": 0.294183,
+      "runs": 5,
+      "cpu_cores": 0.357091,
+      "accel_mb": 0.0,
+      "peak_mb": 1.006883,
+      "accuracy": 0.703704,
+      "measured_at": "2026-11-16T11:44:50+00:00"
+     },
+     {
+      "task": "search_Tops",
+      "family": "search_Tops",
+      "input_rows": 500,
+      "output_rows": 23,
+      "seconds": 0.286899,
+      "runs": 5,
+      "cpu_cores": 0.348812,
+      "accel_mb": 0.0,
+      "peak_mb": 1.030751,
+      "accuracy": 0.521739,
+      "measured_at": "2026-11-16T11:44:52+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "VECTOR_SCAN",
+    "base_cost": 0.552323,
+    "base_confidence": 0.5635,
+    "gpu_memory_mb": 86.6,
+    "cpu_cores": 0.32,
+    "memory_mb": 1.5,
+    "tasks": [
+     {
+      "task": "search_Tshirts",
+      "family": "search_Tshirts",
+      "input_rows": 500,
+      "output_rows": 89,
+      "seconds": 0.275811,
+      "runs": 5,
+      "cpu_cores": 0.318345,
+      "accel_mb": 0.0,
+      "peak_mb": 1.497514,
+      "accuracy": 0.808989,
+      "measured_at": "2026-11-16T11:44:54+00:00"
+     },
+     {
+      "task": "search_Casual_Shoes",
+      "family": "search_Casual_Shoes",
+      "input_rows": 500,
+      "output_rows": 32,
+      "seconds": 0.275867,
+      "runs": 5,
+      "cpu_cores": 0.326432,
+      "accel_mb": 0.0,
+      "peak_mb": 1.495356,
+      "accuracy": 0.46875,
+      "measured_at": "2026-11-16T11:44:56+00:00"
+     },
+     {
+      "task": "search_Shirts",
+      "family": "search_Shirts",
+      "input_rows": 500,
+      "output_rows": 31,
+      "seconds": 0.276027,
+      "runs": 5,
+      "cpu_cores": 0.326885,
+      "accel_mb": 0.0,
+      "peak_mb": 1.495688,
+      "accuracy": 0.096774,
+      "measured_at": "2026-11-16T11:44:58+00:00"
+     },
+     {
+      "task": "search_Sports_Shoes",
+      "family": "search_Sports_Shoes",
+      "input_rows": 500,
+      "output_rows": 27,
+      "seconds": 0.277208,
+      "runs": 5,
+      "cpu_cores": 0.315817,
+      "accel_mb": 0.0,
+      "peak_mb": 1.49516,
+      "accuracy": 0.703704,
+      "measured_at": "2026-11-16T11:44:59+00:00"
+     },
+     {
+      "task": "search_Tops",
+      "family": "search_Tops",
+      "input_rows": 500,
+      "output_rows": 23,
+      "seconds": 0.275895,
+      "runs": 5,
+      "cpu_cores": 0.314163,
+      "accel_mb": 0.0,
+      "peak_mb": 1.494186,
+      "accuracy": 0.73913,
+      "measured_at": "2026-11-16T11:45:01+00:00"
+     }
+    ]
+   }
+  ],
+  "CROSS_MODAL_MATCH": [
+   {
+    "impl_type": "ENTITY_LINK_MATCH",
+    "base_cost": 0.005449,
+    "base_confidence": 0.31,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.3,
+    "tasks": [
+     {
+      "task": "review_to_movie",
+      "family": "review_to_movie",
+      "input_rows": 1941,
+      "output_rows": 939,
+      "seconds": 0.010577,
+      "runs": 5,
+      "cpu_cores": 0.99764,
+      "accel_mb": 0.0,
+      "peak_mb": 0.284269,
+      "accuracy": 0.309959,
+      "measured_at": "2026-11-16T11:44:16+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "LLM_MATCH",
+    "base_cost": 145.39664,
+    "base_confidence": 0.2667,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 0.01,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "review_to_movie",
+      "family": "review_to_movie",
+      "input_rows": 176,
+      "output_rows": 21,
+      "seconds": 25.589809,
+      "runs": 1,
+      "cpu_cores": 0.000821,
+      "accel_mb": 0.0,
+      "peak_mb": 0.143474,
+      "accuracy": 0.266667,
+      "measured_at": "2026-11-16T11:44:42+00:00"
+     }
+    ]
+   }
+  ],
+  "CONTENT_EXTRACT": [
+   {
+    "impl_type": "METADATA_LOOKUP",
+    "base_cost": 0.002667,
+    "base_confidence": 0.6785,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.4,
+    "tasks": [
+     {
+      "task": "sentiment_text",
+      "family": "sentiment_text",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.005334,
+      "runs": 5,
+      "cpu_cores": 1.001,
+      "accel_mb": 0.0,
+      "peak_mb": 0.412676,
+      "accuracy": 0.6785,
+      "measured_at": "2026-11-16T11:43:52+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "TOOL_EXTRACT",
+    "base_cost": 18.731676,
+    "base_confidence": 0.7625,
+    "gpu_memory_mb": 585.1,
+    "cpu_cores": 0.95,
+    "memory_mb": 421.6,
+    "tasks": [
+     {
+      "task": "sentiment_text",
+      "family": "sentiment_text",
+      "input_rows": 200,
+      "output_rows": 200,
+      "seconds": 0.012725,
+      "runs": 5,
+      "cpu_cores": 0.99795,
+      "accel_mb": 0.0,
+      "peak_mb": 0.046917,
+      "accuracy": 0.665,
+      "measured_at": "2026-11-16T11:43:52+00:00"
+     },
+     {
+      "task": "category_image",
+      "family": "category_image",
+      "input_rows": 100,
+      "output_rows": 100,
+      "seconds": 3.739973,
+      "runs": 5,
+      "cpu_cores": 0.893328,
+      "accel_mb": 8.0,
+      "peak_mb": 421.606478,
+      "accuracy": 0.86,
+      "measured_at": "2026-11-16T11:44:16+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "LLM_EXTRACT",
+    "base_cost": 3143.400073,
+    "base_confidence": 0.9775,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 0.01,
+    "memory_mb": 119.3,
+    "tasks": [
+     {
+      "task": "sentiment_text",
+      "input_rows": 200,
+      "output_rows": 200,
+      "seconds": 53.426081,
+      "runs": 1,
+      "cpu_cores": 0.00058,
+      "accel_mb": 0.0,
+      "peak_mb": 0.068901,
+      "accuracy": 0.965,
+      "measured_at": "2026-11-16T10:09:34+00:00",
+      "family": "sentiment_text"
+     },
+     {
+      "task": "category_image",
+      "input_rows": 100,
+      "output_rows": 100,
+      "seconds": 601.966974,
+      "runs": 1,
+      "cpu_cores": 0.001346,
+      "accel_mb": 0.0,
+      "peak_mb": 119.275282,
+      "accuracy": 0.99,
+      "measured_at": "2026-11-16T10:20:00+00:00",
+      "family": "category_image"
+     }
+    ]
+   }
+  ],
+  "SIMILARITY_JOIN": [
+   {
+    "impl_type": "INTRA_MODAL_JOIN",
+    "base_cost": 0.964297,
+    "base_confidence": 0.225,
+    "gpu_memory_mb": 86.6,
+    "cpu_cores": 0.28,
+    "memory_mb": 0.4,
+    "tasks": [
+     {
+      "task": "same_movie_reviews",
+      "family": "same_movie_reviews",
+      "input_rows": 160,
+      "output_rows": 13,
+      "seconds": 0.154288,
+      "runs": 5,
+      "cpu_cores": 0.275511,
+      "accel_mb": 0.0,
+      "peak_mb": 0.356021,
+      "accuracy": 0.225,
+      "measured_at": "2026-11-16T11:44:43+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "SEMANTIC_JOIN",
+    "base_cost": 68.327826,
+    "base_confidence": 0.55,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 0.01,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "same_movie_reviews",
+      "input_rows": 160,
+      "output_rows": 42,
+      "seconds": 10.932452,
+      "runs": 1,
+      "cpu_cores": 0.000903,
+      "accel_mb": 0.0,
+      "peak_mb": 0.130235,
+      "accuracy": 0.55,
+      "measured_at": "2026-11-16T10:20:28+00:00",
+      "family": "same_movie_reviews"
+     }
+    ]
+   }
+  ],
+  "FEATURE_TRANSFORM": [
+   {
+    "impl_type": "CLIP_IMAGE_ENCODER",
+    "base_cost": 35.6391,
+    "base_confidence": 0.9,
+    "gpu_memory_mb": 587.1,
+    "cpu_cores": 0.89,
+    "memory_mb": 324.1,
+    "tasks": [
+     {
+      "task": "category_from_image",
+      "family": "category_from_image",
+      "input_rows": 100,
+      "output_rows": 100,
+      "seconds": 3.56391,
+      "runs": 5,
+      "cpu_cores": 0.885801,
+      "accel_mb": 10.0,
+      "peak_mb": 324.095321,
+      "accuracy": 0.9,
+      "measured_at": "2026-11-16T11:45:23+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "CLIP_TEXT_ENCODER",
+    "base_cost": 1.104744,
+    "base_confidence": 0.76,
+    "gpu_memory_mb": 577.1,
+    "cpu_cores": 0.33,
+    "memory_mb": 1.8,
+    "tasks": [
+     {
+      "task": "category_from_productDisplayName",
+      "family": "category_from_productDisplayName",
+      "input_rows": 100,
+      "output_rows": 100,
+      "seconds": 0.110474,
+      "runs": 5,
+      "cpu_cores": 0.327397,
+      "accel_mb": 0.0,
+      "peak_mb": 1.792576,
+      "accuracy": 0.76,
+      "measured_at": "2026-11-16T11:45:24+00:00"
+     }
+    ]
+   }
+  ],
+  "VISUALIZE": [
+   {
+    "impl_type": "MATERIALIZE",
+    "base_cost": 8e-06,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.14,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "materialize_movies",
+      "family": "materialize_movies",
+      "input_rows": 116,
+      "output_rows": 116,
+      "seconds": 1e-06,
+      "runs": 5,
+      "cpu_cores": 1.142886,
+      "accel_mb": 0.0,
+      "peak_mb": 7.6e-05,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:52+00:00"
+     }
+    ]
+   }
+  ],
+  "EXPORT": [
+   {
+    "impl_type": "CSV_EXPORT",
+    "base_cost": 0.00603,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "export.csv",
+      "family": "export.csv",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.01206,
+      "runs": 5,
+      "cpu_cores": 0.999388,
+      "accel_mb": 0.0,
+      "peak_mb": 0.149792,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:52+00:00"
+     }
+    ]
+   },
+   {
+    "impl_type": "JSON_EXPORT",
+    "base_cost": 0.007576,
+    "base_confidence": 1.0,
+    "gpu_memory_mb": 0.0,
+    "cpu_cores": 1.0,
+    "memory_mb": 0.1,
+    "tasks": [
+     {
+      "task": "export.json",
+      "family": "export.json",
+      "input_rows": 2000,
+      "output_rows": 2000,
+      "seconds": 0.015152,
+      "runs": 5,
+      "cpu_cores": 0.995674,
+      "accel_mb": 0.0,
+      "peak_mb": 0.045029,
+      "accuracy": 1.0,
+      "measured_at": "2026-11-16T11:43:52+00:00"
+     }
+    ]
+   }
+  ]
+ }
+}

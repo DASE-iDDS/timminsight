@@ -1,0 +1,4 @@
+{"id": "sembench/movie/Q3", "dataset": "sembench/movie", "question": "Count of positive reviews for movie \"ant_man_and_the_wasp_quantumania\".", "gold_answer": "11"}
+{"id": "sembench/movie/Q4", "dataset": "sembench/movie", "question": "Positivity ratio of reviews for movie \"ant_man_and_the_wasp_quantumania\".", "gold_answer": "11/15 = 0.733"}
+{"id": "estate/q3/value_content", "dataset": "nirvana/estate", "question": "How many houses are located in Ajah?", "hidden_intent": "the location is specifically 'Ajah, Lagos'.", "ambiguity_type": "value_content", "base_id": "nirvana/estate/q3", "gold_answer": "13"}
+{"id": "estate/q1", "dataset": "nirvana/estate", "question": "How many houses have a yard, judging from their pictures?"}

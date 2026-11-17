@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TiMMInsight</title>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true">Ti</span><b>TiMMInsight</b></div>
+    <span class="sep" aria-hidden="true"></span>
+    <span id="crumb-dataset" class="crumb">Choose or import a dataset</span>
+    <div class="grow"></div>
+    <span id="model-chip" class="chip out mono"></span>
+    <button id="key-btn" class="btn ghost">Set model key</button>
+  </header>
+  <div class="body">
+    <aside class="pane l" aria-label="Data">
+      <div class="pane-scroll">
+        <section id="dataset-wrap" class="block">
+          <h2 class="h">Datasets</h2>
+          <div id="dataset-list" class="list"></div>
+          <button id="build-graph" class="btn wide">Build metadata graph</button>
+          <h2 class="h" style="margin-top:24px">Import your data</h2>
+          <form id="upload-form" class="stack">
+            <label id="drop" class="drop" for="upload-files">
+              <b>Drop files or browse</b>
+              <span>CSV, Parquet, XLSX tables · images · .txt · zip</span>
+              <span id="drop-files" class="drop-files"></span>
+            </label>
+            <input id="upload-files" type="file" multiple accept=".csv,.parquet,.xlsx,.jpg,.jpeg,.png,.webp,.gif,.bmp,.txt,.zip" hidden>
+            <input id="upload-name" class="inp" placeholder="Dataset name, e.g. agriculture" aria-label="Dataset name">
+            <button class="btn ghost wide" type="submit">Import</button>
+          </form>
+        </section>
+        <section class="block">
+          <h2 class="h">Tables</h2>
+          <div id="table-list" class="list"><p class="sub">No dataset open.</p></div>
+        </section>
+      </div>
+    </aside>
+    <main class="main">
+      <nav class="tabs" role="tablist">
+        <button class="on" data-tab="chat" role="tab">Conversation</button>
+        <button data-tab="graph" role="tab">Metadata graph</button>
+        <button data-tab="data" role="tab">Data</button>
+      </nav>
+      <div id="key-banner" class="banner" hidden>
+        <div class="grow"><b>Add a model key to ask questions.</b> TiMMInsight calls the backbone and the vision model on DashScope. The key stays in this server's memory only.</div>
+        <button id="key-banner-btn" class="btn">Set model key</button>
+      </div>
+      <section id="tab-chat" class="tabbody">
+        <div id="chat" class="chat" aria-live="polite">
+          <div class="empty"><b>Ask a multimodal question.</b><span>Choose a dataset or import your own, build its metadata graph, then ask. TiQC clarifies the question against the graph; TiTSP plans and executes it.</span></div>
+        </div>
+        <div class="composer">
+          <form id="ask-form" class="row">
+            <input id="question" class="inp grow" placeholder="Ask a question about the data" aria-label="Question">
+            <button class="btn" type="submit">Ask</button>
+          </form>
+        </div>
+      </section>
+      <section id="tab-graph" class="tabbody" hidden>
+        <div class="toolbar">
+          <div id="graph-stats" class="row wrap"></div>
+          <div class="grow"></div>
+          <input id="graph-search" class="inp" list="graph-names" placeholder="Find an entity" aria-label="Find an entity">
+          <datalist id="graph-names"></datalist>
+          <div class="seg small" role="tablist" aria-label="Graph view">
+            <button id="gview-graph" class="on">Graph</button><button id="gview-table">Table</button>
+          </div>
+          <button id="graph-fit" class="btn ghost">Fit</button>
+        </div>
+        <div id="graph" class="graph" role="img" aria-label="Metadata graph"></div>
+        <div id="graph-table" class="graph-table" hidden></div>
+        <div id="graph-legend" class="legend"></div>
+        <div class="hint">Drag a node to pin it · double-click to release · click to highlight its neighbours · scroll to zoom</div>
+      </section>
+      <section id="tab-data" class="tabbody scroll" hidden>
+        <div id="data-view" class="data-view"><p class="sub">No dataset open.</p></div>
+      </section>
+    </main>
+    <aside class="pane r" aria-label="Process and evidence">
+      <div class="pane-head"><h2 class="h">Process &amp; evidence</h2></div>
+      <div id="evidence" class="pane-scroll">
+        <p class="sub pad">The query context Φ, the logical plan with propagated confidences, the Pareto front of physical plans, and the execution trace appear here once a question is planned.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+<div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+<dialog id="key-dialog">
+  <form method="dialog" class="stack">
+    <h2 class="h">DashScope API key</h2>
+    <p class="sub">Kept in the server's memory for this session only; never written to disk or logs.</p>
+    <input id="key-input" class="inp" type="password" autocomplete="off" aria-label="API key">
+    <div class="row"><button class="btn" value="ok">Save</button><button class="btn ghost" value="cancel">Cancel</button></div>
+  </form>
+</dialog>
+<script src="/static/vendor/d3.v7.9.0.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# Core
+networkx
+numpy
+pandas
+pyarrow
+sentence-transformers   # entity resolution recall, table retrieval, FEATURE_TRANSFORM
+pillow                  # image cells (FEATURE_TRANSFORM with CLIP)
+
+# TiMetaGraph external metadata-extraction tools
+torch
+torchvision
+ultralytics             # YOLO object detection
+timm                    # ViT classification and semantic features
+opencv-python-headless  # image decoding and visual properties
+spacy                   # NER
+transformers            # NER (BERT token classification)
+vaderSentiment          # sentiment
+keybert                 # topics
+gliner                  # NER over open entity types
+
+# Detectron2 (object detection) installs per its platform instructions and is
+# used when present.
+# After install: python -m spacy download en_core_web_sm
+
+# Demo (python -m demo)
+fastapi
+uvicorn
+python-multipart        # file uploads
+openpyxl                # XLSX tables in uploads
+
+# Optional: AWS Bedrock backbones (--provider bedrock)
+# boto3
+
+# Tests
+pytest
+httpx                   # FastAPI test client
